@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export type FontFamily = "poppins" | "satoshi" | "clash";
 
-const fontClasses: Record<FontFamily, string> = {
+export const fontClasses: Record<FontFamily, string> = {
   poppins: "font-poppins",
   satoshi: "font-satoshi",
   clash: "font-clash",
@@ -23,7 +23,7 @@ export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
 }
 
-const headingSizeClasses: Record<HeadingSize, string> = {
+export const headingSizeClasses: Record<HeadingSize, string> = {
   // Design System Standard Tokens
   l: "font-semibold text-[40px] md:text-[56px] lg:text-[72px] leading-[1.2] tracking-tight",
   m: "font-semibold text-[32px] md:text-[40px] lg:text-[44px] leading-[1.2] tracking-tight",
@@ -109,7 +109,7 @@ export interface BodyProps extends HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode;
 }
 
-const bodySizeClasses: Record<BodySize, string> = {
+export const bodySizeClasses: Record<BodySize, string> = {
   l: "font-normal text-[18px] leading-[1.6]",
   m: "font-normal text-[16px] leading-[1.6]",
   s: "font-normal text-[14px] leading-[1.6]",
@@ -152,7 +152,7 @@ export interface LabelProps extends HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
 }
 
-const labelSizeClasses: Record<LabelSize, string> = {
+export const labelSizeClasses: Record<LabelSize, string> = {
   l: "font-medium text-[18px] leading-[1.2]",
   m: "font-medium text-[16px] leading-[1.2]",
   s: "font-medium text-[14px] leading-[1.2]",
@@ -178,3 +178,30 @@ export function Label({
     </Component>
   );
 }
+
+/**
+ * Helper to get typography class string directly for any element or component className
+ */
+export function getTypographyClass(
+  type: "heading" | "body" | "label",
+  size: string = "m",
+  font?: FontFamily
+): string {
+  if (type === "heading") {
+    return cn(
+      fontClasses[font || "poppins"],
+      headingSizeClasses[size as HeadingSize] || headingSizeClasses.m
+    );
+  }
+  if (type === "label") {
+    return cn(
+      fontClasses[font || "satoshi"],
+      labelSizeClasses[size as LabelSize] || labelSizeClasses.m
+    );
+  }
+  return cn(
+    fontClasses[font || "satoshi"],
+    bodySizeClasses[size as BodySize] || bodySizeClasses.m
+  );
+}
+
