@@ -45,8 +45,8 @@ export default function SectionHeader({
           </div>
         )}
         <Heading
-          size={"h2"}
-          className={cn("font-playfair max-w-3xl", titleClassName)}
+          size={"m"}
+          className={cn("max-w-3xl", titleClassName)}
         >
           {title}
         </Heading>
