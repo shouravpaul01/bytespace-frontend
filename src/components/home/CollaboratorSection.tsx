@@ -6,8 +6,8 @@ import { collaboratorLogos } from "@/constant";
 
 export default function CollaboratorSection() {
   return (
-    <section className="w-full bg-white py-12 sm:py-16 md:py-20 overflow-hidden border-b border-neutral-100">
-      <div className="w-full mx-auto">
+    <section className="w-full h-50.5 flex items-center bg-[#F5F5F6] overflow-hidden border-b border-neutral-100">
+      <div className="container mx-auto max-sm:!w-full max-sm:!max-w-none max-sm:!px-0">
         <Marquee
           pauseOnHover
           repeat={5}
@@ -23,7 +23,7 @@ export default function CollaboratorSection() {
                 alt={logo.name}
                 width={170}
                 height={42}
-                className="h-8 sm:h-9 md:h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain  transition-opacity"
               />
             </div>
           ))}

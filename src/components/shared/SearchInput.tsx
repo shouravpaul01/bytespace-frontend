@@ -82,7 +82,7 @@ export function SearchInput({
       {/* Shadcn InputGroup Pill */}
       <InputGroup
         className={cn(
-          "flex-1 h-11 sm:h-13 bg-white rounded-full border-0 px-1 shadow-sm transition-all focus-within:ring-2 focus-within:ring-secondary/60",
+          "flex-1 h-11 sm:h-13 bg-white rounded-full border-0 px-1 shadow-sm transition-all focus-within:ring-2 focus-within:ring-secondary has-[[data-slot=input-group-control]:focus-visible]:ring-2 has-[[data-slot=input-group-control]:focus-visible]:ring-secondary has-[[data-slot=input-group-control]:focus-visible]:border-transparent",
           disabled && "opacity-60 cursor-not-allowed bg-white/80",
           inputWrapperClassName,
         )}
