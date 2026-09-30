@@ -1,17 +1,18 @@
 export interface LearningPathItem {
   id: string;
   name: string;
-  iconName: "PenTool" | "Code2" | "Laptop" | "Briefcase" | "Megaphone" | "Camera";
+  iconName?: "PenTool" | "Code2" | "Laptop" | "Briefcase" | "Megaphone" | "Camera";
+  iconSrc?: string;
   href?: string;
 }
 
 export const learningPathsData: LearningPathItem[] = [
-  { id: "design", name: "Design", iconName: "PenTool", href: "/courses?category=design" },
-  { id: "development", name: "Development", iconName: "Code2", href: "/courses?category=development" },
-  { id: "it-software", name: "IT & Software", iconName: "Laptop", href: "/courses?category=it-software" },
-  { id: "business", name: "Business", iconName: "Briefcase", href: "/courses?category=business" },
-  { id: "marketing", name: "Marketing", iconName: "Megaphone", href: "/courses?category=marketing" },
-  { id: "photography", name: "Photography", iconName: "Camera", href: "/courses?category=photography" },
+  { id: "design", name: "Design", iconName: "PenTool", iconSrc: "/icons/design.svg", href: "/courses?category=design" },
+  { id: "development", name: "Development", iconName: "Code2", iconSrc: "/icons/development.svg", href: "/courses?category=development" },
+  { id: "it-software", name: "IT & Software", iconName: "Laptop", iconSrc: "/icons/laptop.svg", href: "/courses?category=it-software" },
+  { id: "business", name: "Business", iconName: "Briefcase", iconSrc: "/icons/business.svg", href: "/courses?category=business" },
+  { id: "marketing", name: "Marketing", iconName: "Megaphone", iconSrc: "/icons/marketing.svg", href: "/courses?category=marketing" },
+  { id: "photography", name: "Photography", iconName: "Camera", iconSrc: "/icons/photography.svg", href: "/courses?category=photography" },
 ];
 
 export const categoryRows = [

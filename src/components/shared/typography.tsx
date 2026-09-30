@@ -14,7 +14,17 @@ export const fontClasses: Record<FontFamily, string> = {
    Default Family: Poppins SemiBold (600) | Line-height: 120%
    Optional Family: Clash Display / Satoshi
    ========================================================================== */
-export type HeadingSize = "l" | "m" | "s" | "xs" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type HeadingSize =
+  | "l"
+  | "m"
+  | "s"
+  | "xs"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6";
 
 export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   size?: HeadingSize;
@@ -143,7 +153,7 @@ export const Text = Body;
    Label Typography
    Default Family: Satoshi Medium (500) | Line-height: 120%
    ========================================================================== */
-export type LabelSize = "l" | "m" | "s" | "xs";
+export type LabelSize = "l" | "m" | "s" | "xs" | "xl";
 
 export interface LabelProps extends HTMLAttributes<HTMLElement> {
   size?: LabelSize;
@@ -157,6 +167,7 @@ export const labelSizeClasses: Record<LabelSize, string> = {
   m: "font-medium text-[16px] leading-[1.2]",
   s: "font-medium text-[14px] leading-[1.2]",
   xs: "font-medium text-[12px] leading-[1.2]",
+  xl: "font-medium text-[20px] leading-[1.2]",
 };
 
 export function Label({
@@ -185,23 +196,22 @@ export function Label({
 export function getTypographyClass(
   type: "heading" | "body" | "label",
   size: string = "m",
-  font?: FontFamily
+  font?: FontFamily,
 ): string {
   if (type === "heading") {
     return cn(
       fontClasses[font || "poppins"],
-      headingSizeClasses[size as HeadingSize] || headingSizeClasses.m
+      headingSizeClasses[size as HeadingSize] || headingSizeClasses.m,
     );
   }
   if (type === "label") {
     return cn(
       fontClasses[font || "satoshi"],
-      labelSizeClasses[size as LabelSize] || labelSizeClasses.m
+      labelSizeClasses[size as LabelSize] || labelSizeClasses.m,
     );
   }
   return cn(
     fontClasses[font || "satoshi"],
-    bodySizeClasses[size as BodySize] || bodySizeClasses.m
+    bodySizeClasses[size as BodySize] || bodySizeClasses.m,
   );
 }
-
