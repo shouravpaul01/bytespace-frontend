@@ -1,64 +1,81 @@
+import React, { ElementType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
-import { Heading } from "./typography";
+import {
+  Heading,
+  type HeadingSize,
+  bodySizeClasses,
+  type BodySize,
+  type FontFamily,
+} from "./typography";
 
-interface SectionHeaderProps {
-  badge?: string;
-  badgeIcon?: ReactNode;
-  title: string;
+export interface SectionHeaderProps {
+  /** Section title text or JSX */
+  title: ReactNode;
+  /** Optional custom className for the title */
   titleClassName?: string;
-  description?: string;
+  /** Title typography size token, defaults to 'm' */
+  titleSize?: HeadingSize;
+  /** Semantic HTML heading tag, defaults to 'h2' */
+  as?: ElementType;
+  /** Font family for title, defaults to 'poppins' */
+  titleFont?: FontFamily;
+  /** Section subtitle or description */
+  description?: ReactNode;
+  /** Optional custom className for the description */
+  descriptionClassName?: string;
+  /** Body typography size token, defaults to 'm' (16px) */
+  descriptionSize?: BodySize;
+  /** Text and layout alignment ('left' | 'center'), defaults to 'left' */
   align?: "left" | "center";
-  right?: ReactNode;
+  /** Container className */
   className?: string;
 }
 
-export default function SectionHeader({
-  badge,
-  badgeIcon,
+export function SectionHeader({
   title,
   titleClassName,
+  titleSize = "m",
+  as = "h2",
+  titleFont,
   description,
+  descriptionClassName,
+  descriptionSize = "m",
   align = "left",
-  right,
   className,
 }: SectionHeaderProps) {
+  const isCentered = align === "center";
+
   return (
     <div
       className={cn(
-        "flex items-start justify-between gap-5",
-        align === "center" && "flex-col items-center text-center",
+        "w-full flex flex-col",
+        isCentered ? "items-center text-center" : "items-start text-left",
         className,
       )}
     >
-      {/* Left / Center Content */}
-      <div
-        className={cn(
-          "flex flex-col gap-1",
-          align === "center" && "items-center",
-        )}
+      <Heading
+        as={as}
+        size={titleSize}
+        font={titleFont}
+        className={cn("max-w-3xl", titleClassName)}
       >
-        {badge && (
-          <div className="inline-flex items-center gap-2.5 text-base font-medium text-primary bg-primary/20 rounded-full px-3 py-2 w-fit">
-            {badgeIcon}
-            {badge}
-          </div>
-        )}
-        <Heading
-          size={"m"}
-          className={cn("max-w-3xl", titleClassName)}
-        >
-          {title}
-        </Heading>
-        {description && (
-          <p className="text-neutral-500  max-w-[550px] mt-2">{description}</p>
-        )}
-      </div>
+        {title}
+      </Heading>
 
-      {/* Right Content (optional) */}
-      {right && align !== "center" && (
-        <div className="flex items-center gap-2 shrink-0 mt-1">{right}</div>
+      {description && (
+        <p
+          className={cn(
+            "text-slate-400 max-w-242.5 mt-3 sm:mt-4.5 font-satoshi",
+            isCentered && "mx-auto",
+            bodySizeClasses[descriptionSize],
+            descriptionClassName,
+          )}
+        >
+          {description}
+        </p>
       )}
     </div>
   );
 }
+
+export default SectionHeader;

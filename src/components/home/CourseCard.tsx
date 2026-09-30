@@ -1,0 +1,140 @@
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Star, Signal, BookOpen, SignalMedium } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+} from "@/components/ui/avatar";
+import type { CourseItem } from "@/constant";
+import { cn } from "@/lib/utils";
+import {
+  Body,
+  Heading,
+  headingSizeClasses,
+  Label,
+  labelSizeClasses,
+} from "@/components/shared/typography";
+
+interface CourseCardProps {
+  course: CourseItem;
+}
+
+export function CourseCard({ course }: CourseCardProps) {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <Card className="group bg-white rounded-[24px]  border border-slate-200! p-4 sm:p-5 flex flex-col shadow-none hover:shadow-xl hover:border-transparent transition-all duration-300">
+      {/* Course Image Header with Glassmorphism Overlays */}
+      <div className="relative w-full aspect-[16/10] rounded-[20px] overflow-hidden bg-[#EDF0F5] mb-4 select-none">
+        {!imgError ? (
+          <Image
+            src={course.image}
+            alt={course.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full bg-linear-to-br from-neutral-800 to-neutral-900 flex items-center justify-center text-white/40">
+            <BookOpen className="size-10 stroke-[1.5]" />
+          </div>
+        )}
+
+        {/* 3 Translucent Frosted Glass Pills at the Bottom */}
+        <div className="absolute bottom-2.5 sm:bottom-3 inset-x-2.5 sm:inset-x-3 flex items-center justify-between gap-1 z-10">
+          {[course.lessons, course.duration, course.comments].map(
+            (stat, idx) => (
+              <span
+                key={idx}
+                className={cn(
+                  "px-2.5  h-6.5 flex justify-center items-center rounded-full  bg-[#F6F6F699] backdrop-blur-sm  text-neutral-700 border border-white/30 shadow-xs whitespace-nowrap",
+                  labelSizeClasses.xs,
+                )}
+              >
+                {stat}
+              </span>
+            ),
+          )}
+        </div>
+      </div>
+
+      {/* Course Info */}
+      <CardContent className="flex flex-col flex-1 p-0">
+        {/* Title and Rating Row */}
+        <div className="flex items-center justify-between gap-2">
+          <Link href={`/courses/${course.id}`} className="flex-1">
+            <Heading size="xs" className="line-clamp-1">
+              {course.title}
+            </Heading>
+          </Link>
+
+          <div
+            className={cn("flex items-center gap-1 shrink-0  text-[#4F4F4F]")}
+          >
+            <Body size="l">{course.rating.toFixed(1)}</Body>
+            <Star className="size-4 fill-slate-200 text-slate-200" />
+          </div>
+        </div>
+
+        {/* Instructor */}
+        <p className={cn(" mt-1", labelSizeClasses.xs)}>
+          by{" "}
+          <span className="hover:underline cursor-pointer text-primary">
+            {course.instructor}
+          </span>
+        </p>
+
+        {/* Level and Enrolled Avatars Stack Row */}
+        <div className="flex items-center gap-3  mt-4">
+          {/* Level Badge */}
+          <Badge
+            variant="outline"
+            className={cn(
+              "h-8 px-3  rounded-full bg-[#F5F5F7] text-slate-700 border-0 gap-0.5 shadow-none",
+              labelSizeClasses.xs,
+            )}
+          >
+            <SignalMedium className="size-5! text-slate-700" />
+            {course.level}
+          </Badge>
+
+          {/* Student Avatars Stack using AvatarGroup */}
+          <AvatarGroup>
+            {course.studentAvatars.slice(0, 4).map((avatarSrc, idx) => (
+              <Avatar key={idx} className="size-7 sm:size-8!  ring-0!">
+                <AvatarImage src={avatarSrc} alt={`Student ${idx + 1}`} />
+                <AvatarFallback className="text-[10px] bg-neutral-200 font-medium">
+                  {idx + 1}
+                </AvatarFallback>
+              </Avatar>
+            ))}
+
+            {/* Neon Green Enrolled Counter using AvatarGroupCount */}
+            <AvatarGroupCount className="size-7 sm:size-8! bg-secondary text-neutral-950 ring-0!">
+              {course.enrolledCount}
+            </AvatarGroupCount>
+          </AvatarGroup>
+        </div>
+
+        {/* Price Row */}
+        <div className="mt-4  flex items-baseline gap-1">
+          <Heading size="xs" className=" text-primary ">
+            {course.price}
+          </Heading>
+          <Label size="xs" className="text-[#4F4F4F]">
+            /{course.billingPeriod}
+          </Label>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

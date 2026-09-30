@@ -102,3 +102,5 @@ export const featuresData = [
     icon: "crown",
   },
 ];
+
+export * from "./courses";
