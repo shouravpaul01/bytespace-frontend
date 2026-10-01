@@ -29,7 +29,7 @@ export default function LoginPage() {
   const onSubmit = async (data: ClientLoginInput) => {
     setIsLoading(true);
     try {
-      // Simulate login request or integrate with backend
+      // TODO: Replace with backend authentication service
       await new Promise((resolve) => setTimeout(resolve, 800));
       toast.success("Signed in successfully!");
     } catch {
@@ -42,7 +42,6 @@ export default function LoginPage() {
   return (
     <div className="container relative z-10 mx-auto w-full px-4 sm:px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-        {/* Left Side: Branding, Visual Course Cards, and 3D Floating Shapes */}
         <div className="w-full flex justify-start">
           <AuthVisualColumn
             title="Sign in with ease"
@@ -50,10 +49,8 @@ export default function LoginPage() {
           />
         </div>
 
-        {/* Right Side: Centered White Form Card */}
         <div className="w-full flex justify-center lg:justify-end">
           <div className="w-full max-w-[480px] bg-white rounded-[32px] p-7 sm:p-9 lg:p-10 shadow-2xl transition-all duration-300">
-            {/* Header Eyebrow & Title using Typography components */}
             <div className="mb-8">
               <Text size="s" className="text-primary font-medium block mb-1.5">
                 Sign In
@@ -64,7 +61,6 @@ export default function LoginPage() {
               </Heading>
             </div>
 
-            {/* Form Inputs handled via FormProvider and FormInput */}
             <FormProvider {...methods}>
               <form
                 onSubmit={methods.handleSubmit(onSubmit)}
@@ -85,7 +81,6 @@ export default function LoginPage() {
                   placeholder="********"
                 />
 
-                {/* Right-aligned Neon Yellow/Lime Action Button */}
                 <div className="flex justify-end pt-2">
                   <Button
                     type="submit"
@@ -99,10 +94,8 @@ export default function LoginPage() {
               </form>
             </FormProvider>
 
-            {/* Social Login with Divider handled via SocialAuth component */}
             <SocialAuth />
 
-            {/* Bottom Footer Switcher to Register */}
             <div className="text-center text-sm text-slate-600 mt-8">
               New user?{" "}
               <Link

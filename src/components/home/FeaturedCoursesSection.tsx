@@ -8,11 +8,13 @@ import { CourseCard } from "./CourseCard";
 import { courseCategories, featuredCoursesData } from "@/constant";
 import { cn } from "@/lib/utils";
 
+/**
+ * Featured courses section with interactive category tabs and responsive course cards.
+ */
 export default function FeaturedCoursesSection() {
   const [activeCategory, setActiveCategory] = useState("Featured");
   const [showAllCategories, setShowAllCategories] = useState(false);
 
-  // Filter courses by category if selected, otherwise show all
   const filteredCourses =
     activeCategory === "Featured"
       ? featuredCoursesData
@@ -25,9 +27,8 @@ export default function FeaturedCoursesSection() {
     filteredCourses.length > 0 ? filteredCourses : featuredCoursesData;
 
   return (
-    <section className="w-full  py-16 sm:py-24 overflow-hidden border-t border-neutral-100">
+    <section className="w-full py-16 sm:py-24 overflow-hidden border-t border-neutral-100">
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
-        {/* Section Header */}
         <SectionHeader
           align="center"
           title={
@@ -40,10 +41,11 @@ export default function FeaturedCoursesSection() {
           description="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life."
         />
 
-        {/* Category Filter Pills (Single map with exact 3 centered rows matching the design inside max-w-[1086px]) */}
+        {/* Category filters */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 max-w-271.5 mx-auto mt-8 sm:mt-11">
-          {courseCategories.map((category, index) => (
+          {courseCategories.map((category) => (
             <FilterButton
+              key={category}
               isActive={activeCategory === category}
               onClick={() => setActiveCategory(category)}
             >
@@ -51,7 +53,6 @@ export default function FeaturedCoursesSection() {
             </FilterButton>
           ))}
 
-          {/* + More Button */}
           <Button
             type="button"
             variant="ghost"
@@ -62,7 +63,7 @@ export default function FeaturedCoursesSection() {
           </Button>
         </div>
 
-        {/* 6 Course Cards Grid */}
+        {/* Course cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 mt-12 sm:mt-14 min-h-[480px]">
           {displayedCourses.map((course) => (
             <CourseCard key={course.id} course={course} />

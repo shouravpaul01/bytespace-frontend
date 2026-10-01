@@ -29,7 +29,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: ClientRegisterInput) => {
     setIsLoading(true);
     try {
-      // Simulate register request or integrate with backend
+      // TODO: Replace with backend registration service
       await new Promise((resolve) => setTimeout(resolve, 800));
       toast.success("Account created successfully!");
     } catch {
@@ -42,7 +42,6 @@ export default function RegisterPage() {
   return (
     <div className="container relative z-10 mx-auto w-full px-4 sm:px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-start">
-        {/* Left Side: Branding, Visual Course Cards, and 3D Floating Shapes */}
         <div className="w-full flex justify-center lg:justify-start">
           <AuthVisualColumn
             title="Sign up and come in"
@@ -50,10 +49,8 @@ export default function RegisterPage() {
           />
         </div>
 
-        {/* Right Side: Centered White Form Card */}
         <div className="w-full flex justify-center lg:justify-end">
           <div className="w-full max-w-[480px] bg-white rounded-[32px] p-8 sm:p-10 lg:p-12 shadow-2xl transition-all duration-300">
-            {/* Header Eyebrow & Title using Typography components */}
             <div className="mb-8">
               <Text size="s" className="text-primary font-medium block mb-1.5">
                 Create an Account
@@ -65,7 +62,6 @@ export default function RegisterPage() {
               </Heading>
             </div>
 
-            {/* Form Inputs handled via FormProvider and FormInput */}
             <FormProvider {...methods}>
               <form
                 onSubmit={methods.handleSubmit(onSubmit)}
@@ -92,7 +88,6 @@ export default function RegisterPage() {
                   placeholder="********"
                 />
 
-                {/* Right-aligned Neon Yellow/Lime Action Button */}
                 <div className="flex justify-end pt-2">
                   <Button
                     type="submit"
@@ -106,7 +101,6 @@ export default function RegisterPage() {
               </form>
             </FormProvider>
 
-            {/* Bottom Footer Switcher to Login */}
             <div className="text-center text-sm text-slate-600 mt-10 sm:mt-14">
               Already have an account?{" "}
               <Link

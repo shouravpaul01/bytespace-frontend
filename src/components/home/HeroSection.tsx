@@ -77,19 +77,19 @@ const floatingShapes = [
   },
 ];
 
+/**
+ * Primary hero landing section with headline, search, central student graphic, and floating course chips.
+ */
 export default function HeroSection() {
   return (
     <section className="relative w-full bg-primary h-screen md:h-[1024px]! overflow-hidden select-none">
-      {/* Reusable Shared Grid Pattern Background */}
       <GridPattern
         cellSize={120}
         strokeColor="rgba(255, 255, 255, 0.12)"
         strokeWidth={1}
         className="w-full h-full relative pt-[100px] sm:pt-[125px] md:pt-[150px] pb-0 flex flex-col justify-between"
       >
-        {/* =========================================================================
-            Floating 3D Background Shapes (Mapped)
-            ========================================================================= */}
+        {/* Floating 3D shapes */}
         {floatingShapes.map((shape) => (
           <FloatingShape
             key={shape.id}
@@ -102,11 +102,7 @@ export default function HeroSection() {
           />
         ))}
 
-        {/* =========================================================================
-            Main Hero Content Container
-            ========================================================================= */}
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 flex flex-col items-center h-full justify-between ">
-          {/* Hero Typography */}
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 flex flex-col items-center h-full justify-between">
           <div className="text-center max-w-4xl mx-auto">
             <Heading size="l" className="text-white">
               Get Access to Hundreds
@@ -120,7 +116,6 @@ export default function HeroSection() {
             </Body>
           </div>
 
-          {/* Search Box */}
           <div className="mt-0 md:mt-12 w-full max-w-xl mx-auto">
             <SearchInput
               placeholder="Course, topic, creator"
@@ -129,11 +124,8 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* =========================================================================
-              Center Graphic: The Large Neon Green Circle Backdrop & The Smiling Student
-              ========================================================================= */}
+          {/* Central graphic & floating badge composition */}
           <div className="relative mt-4 sm:mt-8 md:mt-auto w-full max-w-4xl flex justify-center items-end">
-            {/* The Large Neon Yellow/Green Circle - Expansive dome behind student and cards */}
             <div
               className="absolute left-1/2 -translate-x-1/2 top-[20px] sm:top-[45px] md:top-[85px] w-[480px] h-[480px] sm:w-[650px] sm:h-[650px] md:w-287.25 md:h-287.25 rounded-full bg-secondary z-0 shadow-2xl pointer-events-none"
               style={{
@@ -144,29 +136,20 @@ export default function HeroSection() {
               }}
             />
 
-            {/* The Man Image (SVG) - Sits in front of the circle with head protruding over top */}
-            <div className="relative z-10 w-[360px] xs:w-[400px] sm:w-[480px] md:w-[600px] lg:w-[780px] flex justify-center ms-10  md:ms-20 flex-shrink-0">
+            <div className="relative z-10 w-[360px] xs:w-[400px] sm:w-[480px] md:w-[600px] lg:w-[780px] flex justify-center ms-10 md:ms-20 flex-shrink-0">
               <Image
                 src="/images/man.png"
                 alt="Student listening to course and holding laptop"
                 width={722}
                 height={581}
                 priority
+                style={{ height: "auto" }}
                 className="w-full h-auto object-contain drop-shadow-2xl scale-110 sm:scale-100 origin-bottom"
               />
             </div>
 
-            {/* =========================================================================
-                Floating Badges (Exact layout, contents, and typography from design)
-                ========================================================================= */}
-
-            {/* Card 1: UI/UX Design (Left upper-mid) */}
-            <CourseStatsBadge className="absolute  left-[0%] sm:left-[3%] md:left-[6%] lg:left-[13%] -top-[15%] sm:top-[30%] md:top-[25%] z-20 scale-85 sm:scale-95 md:scale-100 origin-top-left" />
-
-            {/* Card 2: Learning Progress 55% (Right upper-mid) */}
+            <CourseStatsBadge className="absolute left-[0%] sm:left-[3%] md:left-[6%] lg:left-[13%] -top-[15%] sm:top-[30%] md:top-[25%] z-20 scale-85 sm:scale-95 md:scale-100 origin-top-left" />
             <LearningProgressBadge className="absolute right-[0%] sm:right-[3%] md:right-[6%] lg:right-[12%] top-[15%] sm:top-[36%] md:top-[28%] z-20 scale-85 sm:scale-95 md:scale-100 origin-top-right" />
-
-            {/* Card 3: Happy Students (Bottom-Left) */}
             <HappyStudentsBadge className="absolute left-[-2%] sm:left-[2%] md:left-[4%] lg:left-[4%] bottom-[8%] sm:bottom-[10%] md:bottom-[12%] z-20 scale-85 sm:scale-95 md:scale-100 origin-bottom-left" />
           </div>
         </div>

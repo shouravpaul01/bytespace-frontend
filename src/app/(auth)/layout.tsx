@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   description: "Sign in or create your ByteSpace account",
 };
 
+/**
+ * Dedicated layout for authentication pages (/login, /register).
+ * Features a full-canvas background grid pattern and a 120px header with brand icon.
+ */
 export default function AuthLayout({
   children,
 }: {
@@ -17,7 +21,6 @@ export default function AuthLayout({
       data-auth-page
       className="relative min-h-screen w-full bg-primary flex flex-col overflow-x-hidden"
     >
-      {/* Background Grid Pattern spanning the entire canvas */}
       <GridPattern
         variant="hero-blue"
         strokeColor="rgba(255, 255, 255, 0.12)"
@@ -25,7 +28,6 @@ export default function AuthLayout({
         className="absolute inset-0 pointer-events-none z-0"
       />
 
-      {/* Header with 120px height and Logo on container left side */}
       <header className="relative z-10 h-[120px] flex items-center shrink-0">
         <div className="container mx-auto px-4 sm:px-6">
           <Logo
@@ -37,7 +39,6 @@ export default function AuthLayout({
         </div>
       </header>
 
-      {/* Main Content Area */}
       <main className="relative z-10 flex-1 flex flex-col justify-start items-center pt-2 sm:pt-4 lg:pt-6 pb-8 sm:pb-12">
         {children}
       </main>

@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
+/**
+ * Props for the SocialAuth component.
+ */
 interface SocialAuthProps {
   showDivider?: boolean;
   dividerText?: string;
@@ -15,6 +18,9 @@ interface SocialAuthProps {
   className?: string;
 }
 
+/**
+ * Social authentication buttons (Facebook, Google) with an optional divider.
+ */
 export function SocialAuth({
   showDivider = true,
   dividerText = "or",
@@ -40,7 +46,6 @@ export function SocialAuth({
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Optional Divider with Centered Text */}
       {showDivider && (
         <div className="relative my-7 flex items-center justify-center">
           <Separator className="w-full bg-slate-200" />
@@ -50,9 +55,7 @@ export function SocialAuth({
         </div>
       )}
 
-      {/* Social Media Action Buttons using shadcn Button and public/icons */}
       <div className="flex items-center justify-center gap-4">
-        {/* Facebook Button */}
         <Button
           type="button"
           variant="outline"
@@ -70,7 +73,6 @@ export function SocialAuth({
           />
         </Button>
 
-        {/* Google Button */}
         <Button
           type="button"
           variant="outline"
