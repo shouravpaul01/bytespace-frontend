@@ -6,6 +6,7 @@ import FeaturedCoursesSection from "@/components/home/FeaturedCoursesSection";
 import CreatorCtaSection from "@/components/home/CreatorCtaSection";
 import CommunitySection from "@/components/home/CommunitySection";
 import type { Metadata } from "next";
+import Loading from "@/components/shared/Loading";
 
 export const metadata: Metadata = {
   title: "ByteSpace — Get Access to Hundreds Courses Available",
