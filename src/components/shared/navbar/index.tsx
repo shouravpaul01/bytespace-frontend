@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import NavLink from "./NavLink";
+import NavLink from "../NavLink";
 import { navLinks } from "@/constant";
 import Logo from "../Logo";
 import ShoppingCart from "./ShoppingCart";
@@ -42,6 +42,7 @@ export default function Navbar() {
                 <NavLink
                   href={link.href}
                   label={link.label}
+                  variant="navbar"
                   className="px-1"
                 />
               </li>
@@ -50,8 +51,8 @@ export default function Navbar() {
 
           {/* Desktop Right Actions (Sign In, Join Us, Cart) */}
           <div className="hidden md:flex items-center gap-6">
-            <NavLink href="/login" label="Sign In" />
-            <NavLink href="/register" label="Join Us" />
+            <NavLink href="/login" label="Sign In" variant="navbar" />
+            <NavLink href="/register" label="Join Us" variant="navbar" />
             <ShoppingCart />
           </div>
 

@@ -18,6 +18,12 @@ export interface SearchInputProps {
   onChange?: (value: string) => void;
   /** Input placeholder text */
   placeholder?: string;
+  /** Input type (e.g. 'text', 'email', 'search') */
+  type?: string;
+  /** Whether to show or hide the search icon inside the input (defaults to true) */
+  showIcon?: boolean;
+  /** Whether the input is required */
+  required?: boolean;
   /** Outer container className */
   className?: string;
   /** InputGroup wrapper pill className */
@@ -44,6 +50,9 @@ export function SearchInput({
   value,
   onChange,
   placeholder = "Course, topic, creator",
+  type = "text",
+  showIcon = true,
+  required = false,
   className,
   inputWrapperClassName,
   inputClassName,
@@ -82,23 +91,28 @@ export function SearchInput({
       {/* Shadcn InputGroup Pill */}
       <InputGroup
         className={cn(
-          "flex-1 h-11 sm:h-13 bg-white rounded-full border-0 px-1 shadow-sm transition-all focus-within:ring-2 focus-within:ring-secondary/60",
+          "flex-1 h-11 sm:h-13 bg-white rounded-full border-0 px-1 shadow-sm transition-all focus-within:ring-2 focus-within:ring-secondary has-[[data-slot=input-group-control]:focus-visible]:ring-2 has-[[data-slot=input-group-control]:focus-visible]:ring-secondary has-[[data-slot=input-group-control]:focus-visible]:border-transparent",
           disabled && "opacity-60 cursor-not-allowed bg-white/80",
           inputWrapperClassName,
         )}
       >
-        <InputGroupAddon className="pl-4 sm:pl-6 pr-0 text-muted-foreground select-none">
-          <Search className="size-4 sm:size-5 text-[#9CA3AF] shrink-0" />
-        </InputGroupAddon>
+        {showIcon && (
+          <InputGroupAddon className="pl-4 sm:pl-6 pr-0 text-muted-foreground select-none">
+            <Search className="size-4 sm:size-5 text-[#9CA3AF] shrink-0" />
+          </InputGroupAddon>
+        )}
 
         <InputGroupInput
+          type={type}
+          required={required}
           value={currentValue}
           onChange={handleInputChange}
           placeholder={placeholder}
           disabled={disabled}
           autoFocus={autoFocus}
           className={cn(
-            "h-full  sm:text-base text-neutral-800 placeholder:text-[#82868E] px-3",
+            "h-full sm:text-base text-neutral-800 placeholder:text-[#82868E] px-3",
+            !showIcon && "pl-5 sm:pl-6",
             bodySizeClasses.l,
             inputClassName,
           )}
