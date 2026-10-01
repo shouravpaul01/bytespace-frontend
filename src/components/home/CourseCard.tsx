@@ -6,13 +6,7 @@ import Link from "next/link";
 import { Star, Signal, BookOpen, SignalMedium } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-  AvatarGroup,
-  AvatarGroupCount,
-} from "@/components/ui/avatar";
+import { AvatarStack } from "@/components/shared/AvatarStack";
 import type { CourseItem } from "@/constant";
 import { cn } from "@/lib/utils";
 import {
@@ -25,13 +19,19 @@ import {
 
 interface CourseCardProps {
   course: CourseItem;
+  className?: string;
 }
 
-export function CourseCard({ course }: CourseCardProps) {
+export function CourseCard({ course, className }: CourseCardProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <Card className="group bg-white rounded-[24px]  border border-slate-200! p-4 sm:p-5 flex flex-col shadow-none hover:shadow-xl hover:border-transparent transition-all duration-300">
+    <Card
+      className={cn(
+        "group bg-white rounded-[24px] border border-slate-200! p-4 sm:p-5 flex flex-col shadow-none hover:shadow-xl hover:border-transparent transition-all duration-300",
+        className,
+      )}
+    >
       {/* Course Image Header with Glassmorphism Overlays */}
       <div className="relative w-full aspect-[16/10] rounded-[20px] overflow-hidden bg-[#EDF0F5] mb-4 select-none">
         {!imgError ? (
@@ -56,7 +56,7 @@ export function CourseCard({ course }: CourseCardProps) {
               <span
                 key={idx}
                 className={cn(
-                  "px-2.5  h-6.5 flex justify-center items-center rounded-full  bg-[#F6F6F699] backdrop-blur-sm  text-neutral-700 border border-white/30 shadow-xs whitespace-nowrap",
+                  "px-2.5  h-6.5 flex justify-center items-center rounded-full  bg-[#F6F6F699] backdrop-blur-sm  text-neutral-700 border border-white/30 whitespace-nowrap",
                   labelSizeClasses.xs,
                 )}
               >
@@ -107,22 +107,12 @@ export function CourseCard({ course }: CourseCardProps) {
             {course.level}
           </Badge>
 
-          {/* Student Avatars Stack using AvatarGroup */}
-          <AvatarGroup>
-            {course.studentAvatars.slice(0, 4).map((avatarSrc, idx) => (
-              <Avatar key={idx} className="size-7 sm:size-8!  ring-0!">
-                <AvatarImage src={avatarSrc} alt={`Student ${idx + 1}`} />
-                <AvatarFallback className="text-[10px] bg-neutral-200 font-medium">
-                  {idx + 1}
-                </AvatarFallback>
-              </Avatar>
-            ))}
-
-            {/* Neon Green Enrolled Counter using AvatarGroupCount */}
-            <AvatarGroupCount className="size-7 sm:size-8! bg-secondary text-neutral-950 ring-0!">
-              {course.enrolledCount}
-            </AvatarGroupCount>
-          </AvatarGroup>
+          {/* Student Avatars Stack using shared AvatarStack */}
+          <AvatarStack
+            avatars={course.studentAvatars}
+            max={4}
+            countText={course.enrolledCount}
+          />
         </div>
 
         {/* Price Row */}

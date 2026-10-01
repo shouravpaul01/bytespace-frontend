@@ -1,5 +1,6 @@
 import HeroSection from "@/components/home/HeroSection";
 import CollaboratorSection from "@/components/home/CollaboratorSection";
+import WhyBytespaceSection from "@/components/home/WhyBytespaceSection";
 import LearningPathsSection from "@/components/home/LearningPathsSection";
 import FeaturedCoursesSection from "@/components/home/FeaturedCoursesSection";
 import type { Metadata } from "next";
@@ -18,10 +19,13 @@ export default function HomePage() {
 
       {/* Collaborator / Partners Marquee Section */}
       <CollaboratorSection />
+
       {/* Discover Your Passion, Build Your Skills (Featured Courses Catalog) */}
       <FeaturedCoursesSection />
       {/* Explore Diverse Learning Paths Section */}
       <LearningPathsSection />
+      {/* Why ByteSpace — Growth + Manage sections */}
+      <WhyBytespaceSection />
     </div>
   );
 }
