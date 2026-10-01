@@ -103,6 +103,7 @@ export interface HappyStudentsBadgeProps extends React.HTMLAttributes<HTMLDivEle
   reviewsCount?: string | number;
   avatars?: string[];
   badgeText?: string;
+  variant?: "white" | "neon";
 }
 
 export function HappyStudentsBadge({
@@ -111,26 +112,40 @@ export function HappyStudentsBadge({
   reviewsCount = 240,
   avatars = defaultStudentAvatars,
   badgeText = "2K+",
+  variant = "white",
   className,
   ...props
 }: HappyStudentsBadgeProps) {
+  const isNeon = variant === "neon";
+
   return (
     <div
       className={cn(
-        "bg-white rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/50 transition-transform hover:scale-105 select-none",
+        "rounded-2xl p-3 sm:p-4 shadow-2xl transition-transform hover:scale-105 select-none",
+        isNeon
+          ? "bg-[#CBFC01] text-slate-950 border-none"
+          : "bg-white border border-white/50",
         className,
       )}
       {...props}
     >
       <div className="space-y-1">
-        <Label size="m" className="text-slate-950">
+        <Label size="m" className="text-slate-950 font-semibold">
           {title}
         </Label>
         <div className="flex items-center gap-1">
-          <Body size="xs" className="text-slate-400">
+          <Body
+            size="xs"
+            className={isNeon ? "text-slate-800 font-medium" : "text-slate-400"}
+          >
             {rating} ({reviewsCount})
           </Body>
-          <Star className="size-4 text-secondary fill-secondary" />
+          <Star
+            className={cn(
+              "size-4",
+              isNeon ? "text-primary fill-primary" : "text-secondary fill-secondary",
+            )}
+          />
         </div>
       </div>
 

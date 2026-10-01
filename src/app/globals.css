@@ -120,6 +120,78 @@
   }
 }
 
+/* ==========================================================================
+   Custom Global Scrollbar Design
+   - Primary brand color (#003BE2) floating pill thumb
+   - Fully transparent track (no clunky Windows grey/white borders)
+   - Seamless theming for default, dark, and auth pages
+   ========================================================================== */
+
+/* Firefox standard scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #002db0;
+}
+
+/* Dark mode scrollbars */
+.dark * {
+  scrollbar-color: var(--primary) transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #2558f6;
+}
+
+/* Auth pages: solid blue background & high-contrast secondary neon thumb */
+html:has([data-auth-page]),
+body:has([data-auth-page]) {
+  background-color: var(--primary) !important;
+  scrollbar-color: var(--secondary) transparent !important;
+}
+
+html:has([data-auth-page]) ::-webkit-scrollbar-track,
+body:has([data-auth-page]) ::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+html:has([data-auth-page]) ::-webkit-scrollbar-thumb,
+body:has([data-auth-page]) ::-webkit-scrollbar-thumb {
+  background-color: var(--secondary) !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+}
+
+html:has([data-auth-page]) ::-webkit-scrollbar-thumb:hover,
+body:has([data-auth-page]) ::-webkit-scrollbar-thumb:hover {
+  background-color: #bbf000 !important;
+}
+
 .container {
   @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-10 max-w-299.75;
 }

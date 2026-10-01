@@ -9,6 +9,20 @@ export const loginSchema = z.object({
     .min(6, "Password must be at least 6 characters"),
 });
 
+export const clientLoginSchema = z.object({
+  email: z.string().nonempty("Email is required").email("Please enter a valid email address"),
+  password: z.string().nonempty("Password is required").min(6, "Password must be at least 6 characters"),
+});
+
+export const clientRegisterSchema = z.object({
+  fullName: z.string().nonempty("Full name is required").min(2, "Full name must be at least 2 characters"),
+  email: z.string().nonempty("Email is required").email("Please enter a valid email address"),
+  password: z.string().nonempty("Password is required").min(6, "Password must be at least 6 characters"),
+});
+
+export type ClientLoginInput = z.infer<typeof clientLoginSchema>;
+export type ClientRegisterInput = z.infer<typeof clientRegisterSchema>;
+
 
 
 export const registerSchema = z.object({

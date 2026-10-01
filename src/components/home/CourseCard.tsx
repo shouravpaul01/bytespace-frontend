@@ -20,9 +20,14 @@ import {
 interface CourseCardProps {
   course: CourseItem;
   className?: string;
+  starClassName?: string;
 }
 
-export function CourseCard({ course, className }: CourseCardProps) {
+export function CourseCard({
+  course,
+  className,
+  starClassName = "fill-amber-400 text-amber-400",
+}: CourseCardProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
@@ -81,7 +86,7 @@ export function CourseCard({ course, className }: CourseCardProps) {
             className={cn("flex items-center gap-1 shrink-0  text-[#4F4F4F]")}
           >
             <Body size="l">{course.rating.toFixed(1)}</Body>
-            <Star className="size-4 fill-slate-200 text-slate-200" />
+            <Star className={cn("size-4", starClassName)} />
           </div>
         </div>
 
