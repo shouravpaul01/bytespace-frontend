@@ -1,9 +1,8 @@
-
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/navbar";
 
 type Props = {
   children: React.ReactNode;
-  
 };
 
 export default function DefaultLayout({ children }: Props) {
@@ -11,11 +10,9 @@ export default function DefaultLayout({ children }: Props) {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

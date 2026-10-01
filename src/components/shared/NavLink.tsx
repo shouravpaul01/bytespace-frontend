@@ -10,8 +10,10 @@ import {
 
 export type NavLinkProps = {
   href: string;
-  label: string;
+  label?: string;
+  children?: React.ReactNode;
   exact?: boolean;
+  variant?: "default" | "navbar";
 
   // customizable styles
   className?: string;
@@ -22,7 +24,9 @@ export type NavLinkProps = {
 export default function NavLink({
   href,
   label,
+  children,
   exact = true,
+  variant = "default",
   className,
   activeClassName,
   inactiveClassName,
@@ -30,6 +34,16 @@ export default function NavLink({
   const pathname = usePathname();
 
   const isActive = exact ? pathname === href : pathname.startsWith(href);
+
+  const defaultInactiveClass =
+    variant === "navbar"
+      ? "text-white/80 hover:text-white hover:-translate-y-1"
+      : "font-satoshi text-slate-700 hover:text-primary hover:-translate-y-0.5";
+
+  const defaultActiveClass =
+    variant === "navbar"
+      ? "text-white font-semibold -translate-y-1"
+      : "font-satoshi text-primary font-semibold -translate-y-0.5";
 
   return (
     <Link
@@ -39,18 +53,18 @@ export default function NavLink({
         isActive
           ? cn(
               labelSizeClasses.m,
-              "text-white font-semibold -translate-y-1",
+              defaultActiveClass,
               activeClassName,
             )
           : cn(
               bodySizeClasses.m,
-              "text-white/80 hover:text-white hover:-translate-y-1",
+              defaultInactiveClass,
               inactiveClassName,
             ),
         className,
       )}
     >
-      {label}
+      {children || label}
     </Link>
   );
 }

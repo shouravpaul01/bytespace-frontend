@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { navLinks } from "@/constant";
 import Logo from "../Logo";
-import NavLink from "./NavLink";
+import NavLink from "../NavLink";
 import ShoppingCart from "./ShoppingCart";
 import { cn } from "@/lib/utils";
 
