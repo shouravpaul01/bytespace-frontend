@@ -3,6 +3,8 @@ import CollaboratorSection from "@/components/home/CollaboratorSection";
 import WhyBytespaceSection from "@/components/home/WhyBytespaceSection";
 import LearningPathsSection from "@/components/home/LearningPathsSection";
 import FeaturedCoursesSection from "@/components/home/FeaturedCoursesSection";
+import CreatorCtaSection from "@/components/home/CreatorCtaSection";
+import CommunitySection from "@/components/home/CommunitySection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,6 +28,12 @@ export default function HomePage() {
       <LearningPathsSection />
       {/* Why ByteSpace — Growth + Manage sections */}
       <WhyBytespaceSection />
+
+      {/* Unlock Your Potential as a Creator CTA Banner */}
+      <CreatorCtaSection />
+
+      {/* Discover What Our Community Is Saying (Testimonials Section) */}
+      <CommunitySection />
     </div>
   );
 }
