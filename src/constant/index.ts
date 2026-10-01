@@ -1,13 +1,17 @@
 export const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Providers", href: "/providers" },
-
-  { label: "Membership", href: "/membership" },
-  { label: "About us", href: "/about" },
-  { label: "Contact Us", href: "/contact" },
-
-  ,
+  { label: "Courses", href: "/courses" },
+  { label: "Creators", href: "/creators" },
 ];
+
+export const collaboratorLogos = [
+  { name: "Logoipsum", src: "/images/collaborators/logoipsum.svg" },
+  { name: "Logoipsum 1", src: "/images/collaborators/logoipsum1.svg" },
+  { name: "Logoipsum 2", src: "/images/collaborators/logoipsum2.svg" },
+  { name: "Logoipsum 3", src: "/images/collaborators/logoipsum3.svg" },
+  { name: "Logoipsum 4", src: "/images/collaborators/logoipsum4.svg" },
+];
+
 export const platFormLinks = [
   { label: "Browse Providers", href: "/" },
   { label: "Membership Plans", href: "/providers" },
@@ -98,3 +102,5 @@ export const featuresData = [
     icon: "crown",
   },
 ];
+
+export * from "./courses";

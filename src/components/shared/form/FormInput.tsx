@@ -30,6 +30,9 @@ interface FormInputProps {
   disabled?: boolean;
   startIcon?: IconConfig;
   endIcon?: IconConfig;
+  className?: string;
+  inputGroupClassName?: string;
+  labelClassName?: string;
 }
 
 export function FormInput({
@@ -41,6 +44,9 @@ export function FormInput({
   disabled = false,
   startIcon,
   endIcon,
+  className,
+  inputGroupClassName,
+  labelClassName,
 }: FormInputProps) {
   const {
     register,
@@ -77,10 +83,20 @@ export function FormInput({
   };
 
   return (
-    <Field>
-      <FieldLabel htmlFor={name}>{label}</FieldLabel>
+    <Field className={cn("space-y-1.5", className)}>
+      <FieldLabel
+        htmlFor={name}
+        className={cn("text-slate-800 text-sm font-medium", labelClassName)}
+      >
+        {label}
+      </FieldLabel>
 
-      <InputGroup className="h-12 bg-white">
+      <InputGroup
+        className={cn(
+          "h-12 bg-white rounded-xl border border-slate-200/90 shadow-none focus-within:border-primary transition-colors",
+          inputGroupClassName,
+        )}
+      >
         {renderIcon(startIcon, "inline-start")}
 
         <InputGroupInput
@@ -88,6 +104,7 @@ export function FormInput({
           type={type}
           placeholder={placeholder}
           disabled={disabled}
+          className="px-3.5 text-slate-800 placeholder:text-slate-400 text-sm"
           {...register(name, {
             setValueAs:
               type === "number"

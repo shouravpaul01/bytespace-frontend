@@ -1,98 +1,63 @@
-import Link from "next/link";
+"use client";
 
-import { Menu, Phone, Mail, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator";
-
-
-
-
-import NavLink from "./NavLink";
-
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import NavLink from "../NavLink";
 import { navLinks } from "@/constant";
 import Logo from "../Logo";
-
-
+import ShoppingCart from "./ShoppingCart";
+import MobileNav from "./MobileNav";
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="w-full  sticky top-0 z-50">
+    <header
+      className={cn(
+        "w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 select-none h-[120px] flex items-center",
+        isScrolled
+          ? "bg-primary/95 backdrop-blur-md shadow-md border-b border-white/10"
+          : "bg-transparent border-b border-transparent",
+      )}
+    >
+      <nav className="w-full flex items-center">
+        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+          {/* Logo */}
+          <Logo href="/" textColor="text-white" />
 
-      {/* Navbar */}
-      <nav className=" bg-[#FFF5EB]  flex items-center py-1 ">
-        <div className="container flex items-center justify-between">
-          <Logo  />
-
-          {/* Desktop Menu */}
-
-          <ul className="hidden md:flex items-center gap-2">
-            {navLinks.map((link) => {
-             
-
-              // NORMAL LINK
-              return (
-                <li key={link?.label}>
-                  <NavLink href={link?.href as string} label={link?.label.toUpperCase() as string} />
-                </li>
-              );
-            })}
+          {/* Desktop Navigation Links */}
+          <ul className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <NavLink
+                  href={link.href}
+                  label={link.label}
+                  variant="navbar"
+                  className="px-1"
+                />
+              </li>
+            ))}
           </ul>
-          {/* Desktop Button */}
 
-          <Button size={"lg"} className="px-3 hidden md:block">
-            <Link href="/book">Add List</Link>
-          </Button>
+          {/* Desktop Right Actions (Sign In, Join Us, Cart) */}
+          <div className="hidden md:flex items-center gap-6">
+            <NavLink href="/login" label="Sign In" variant="navbar" />
+            <NavLink href="/register" label="Join Us" variant="navbar" />
+            <ShoppingCart />
+          </div>
 
-          {/* Mobile Menu Button */}
-          {/* <MobileMenu  /> */}
-          <Sheet>
-            <SheetTrigger className="md:hidden flex">
-              <Menu className="w-6 h-6" />
-            </SheetTrigger>
-
-            <SheetContent side="right" className="w-[280px] p-0">
-              {/* Header */}
-              <Logo className="my-3 mx-2" />
-
-             
-
-              {/* Links */}
-              <ul className=" px-4 py-4 space-y-4">
-                {navLinks?.map((link) => {
-                  return (
-                    <li key={link?.label}>
-                      <SheetClose className="w-full">
-                        <NavLink
-                          href={link?.href as string}
-                          label={link?.label.toUpperCase() as string} 
-                          className="w-full! rounded-md flex"
-                          activeClassName="bg-orange-50 text-primary"
-                          inactiveClassName="text-gray-600 hover:bg-orange-50 "
-                          showUnderline={false}
-                        />
-                      </SheetClose>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <Separator />
-
-              {/* Button */}
-              <div className="p-4">
-                <Button  className="h-11">
-                  <Link href="/book">Add List</Link>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
+          {/* Mobile Menu & Drawer */}
+          <MobileNav />
         </div>
       </nav>
     </header>
