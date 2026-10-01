@@ -28,7 +28,7 @@ export function CourseCard({ course, className }: CourseCardProps) {
   return (
     <Card
       className={cn(
-        "group bg-white rounded-[24px] border border-slate-200! p-4 sm:p-5 flex flex-col shadow-none hover:shadow-xl hover:border-transparent transition-all duration-300",
+        "group gap-0! rounded-[24px] border border-slate-200! p-4 sm:p-5 flex flex-col shadow-none hover:shadow-xl hover:border-transparent transition-all duration-300",
         className,
       )}
     >

@@ -38,32 +38,10 @@ export default function CommunitySection() {
           ========================================================================= */}
 
       {/* Top-Right Ambient Lime Glow */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: "750px",
-          height: "600px",
-          top: "-15%",
-          right: "5%",
-          background:
-            "radial-gradient(50% 50% at 50% 50%, #CBFC01 0%, rgba(203, 252, 1, 0.28) 35%, rgba(203, 252, 1, 0.08) 70%, rgba(203, 252, 1, 0) 100%)",
-          filter: "blur(60px)",
-        }}
-      />
-
+      <div className="pointer-events-none absolute top-[-70px] left-[10%] size-[320px] blur-[30px] sm:top-[-100px] sm:left-[20%] sm:size-[480px] sm:blur-[35px] md:top-[-138px] md:left-[33%] md:size-[672px] md:blur-[40px] rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,#CBFC01_0%,rgba(203,252,1,0.28)_35%,rgba(203,252,1,0.08)_70%,rgba(203,252,1,0)_100%)]" />
+      <div className="pointer-events-none absolute top-[-100px] -right-[20%] size-[450px] blur-[30px] sm:top-[-160px] sm:-right-[25%] sm:size-[700px] sm:blur-[35px] md:top-[-241px] md:-right-[34%] md:size-[1137px] md:blur-[40px] rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,rgba(203,252,1,0.4)_0%,rgba(203,252,1,0.092)_53%,rgba(203,252,1,0.024)_75%,rgba(203,252,1,0)_100%)]" />
       {/* Bottom-Left Ambient Blue Glow */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: "550px",
-          height: "550px",
-          bottom: "-15%",
-          left: "-5%",
-          background:
-            "radial-gradient(50% 50% at 50% 50%, #003BE2 0%, rgba(0, 59, 226, 0.18) 35%, rgba(0, 59, 226, 0.05) 70%, rgba(0, 59, 226, 0) 100%)",
-          filter: "blur(70px)",
-        }}
-      />
+      <div className="pointer-events-none absolute bottom-[-250px] left-[-160px] size-[450px] blur-[45px] sm:top-[200px] sm:left-[-260px] sm:size-[700px] sm:blur-[55px] md:top-[149px] md:left-[-442px] md:size-[1137px] md:blur-[70px] rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,rgba(0,59,226,0.24)_0%,rgba(0,59,226,0.0552)_53%,rgba(0,59,226,0.0144)_75%,rgba(0,59,226,0)_100%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
         {/* =========================================================================
@@ -88,8 +66,8 @@ export default function CommunitySection() {
             >
               At ByteSpace, our vibrant community of learners and creators is at
               the heart of what we do. Hear directly from those who have
-              experienced the transformative journey of learning and creating
-              on our platform. Explore testimonials that reflect the diverse
+              experienced the transformative journey of learning and creating on
+              our platform. Explore testimonials that reflect the diverse
               perspectives of enthusiastic learners and accomplished creators.
             </Body>
           </div>
@@ -107,4 +85,3 @@ export default function CommunitySection() {
     </section>
   );
 }
-

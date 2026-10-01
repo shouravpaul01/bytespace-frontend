@@ -48,86 +48,27 @@ function FeatureItem({ text }: { text: string }) {
 }
 
 /* ============================================================
-   Figma Background Radial Gradients
-   ============================================================ */
-const limeGradient =
-  "radial-gradient(50% 50% at 50% 50%, #CBFC01 0%, rgba(203, 252, 1, 0.23) 35%, rgba(203, 252, 1, 0.06) 70%, rgba(203, 252, 1, 0) 100%)";
-
-const blueGradient =
-  "radial-gradient(50% 50% at 50% 50%, #003BE2 0%, rgba(0, 59, 226, 0.23) 35%, rgba(0, 59, 226, 0.06) 70%, rgba(0, 59, 226, 0) 100%)";
-
-/* ============================================================
    WhyBytespaceSection — two alternating feature rows
    ============================================================ */
 export default function WhyBytespaceSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#FAFAFA] md:py-[120px]">
-      {/* Background Radial Gradient Blur Ellipses (from Figma) */}
+    <section className="relative w-full overflow-hidden bg-[#FAFAFA] py-16 sm:py-20 md:py-[120px]">
+      {/* Background Radial Gradient Blur Ellipses (from Figma via Tailwind) */}
 
       {/* Ellipse 11: Top-Left Lime */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: 1137,
-          height: 1137,
-          top: -466,
-          left: -152,
-          background: limeGradient,
-          filter: "blur(40px)",
-        }}
-      />
+      <div className="pointer-events-none absolute -top-[200px] -left-[100px] size-[600px] md:-top-[40%] md:left-[2%] md:size-[1137px] rounded-full blur-[40px] bg-[radial-gradient(50%_50%_at_50%_50%,#CBFC01_0%,rgba(203,252,1,0.23)_35%,rgba(203,252,1,0.06)_70%,rgba(203,252,1,0)_100%)]" />
 
       {/* Ellipse 10: Top-Right Blue */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: 1137,
-          height: 1137,
-          top: -458,
-          left: 811,
-          background: blueGradient,
-          filter: "blur(40px)",
-        }}
-      />
+      <div className="pointer-events-none absolute -top-[200px] -right-[200px] size-[600px] md:-top-[35%] md:-right-[35%]  md:size-[1137px] rounded-full blur-[60px] bg-[radial-gradient(50%_50%_at_50%_50%,#003BE2_0%,rgba(0,59,226,0.23)_35%,rgba(0,59,226,0.06)_70%,rgba(0,59,226,0)_100%)]" />
 
       {/* Ellipse 9: Mid-Left Blue */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: 1137,
-          height: 1137,
-          top: 183,
-          left: -508,
-          background: blueGradient,
-          filter: "blur(40px)",
-        }}
-      />
+      <div className="pointer-events-none absolute top-[30%] -left-[250px] size-[600px] md:top-[10%] md:-left-[35%] md:size-[1137px] rounded-full blur-[40px] bg-[radial-gradient(50%_50%_at_50%_50%,#003BE2_0%,rgba(0,59,226,0.23)_35%,rgba(0,59,226,0.06)_70%,rgba(0,59,226,0)_100%)]" />
 
       {/* Ellipse 8: Bottom-Right Blue */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: 1137,
-          height: 1137,
-          top: 788,
-          left: 722,
-          background: blueGradient,
-          filter: "blur(40px)",
-        }}
-      />
+      <div className="pointer-events-none absolute bottom-[20%] -right-[200px] size-[600px] md:-bottom-[40%]  md:-right-[30%]   md:size-[1137px] rounded-full blur-[60px] bg-[radial-gradient(50%_50%_at_50%_50%,#003BE2_0%,rgba(0,59,226,0.23)_35%,rgba(0,59,226,0.06)_70%,rgba(0,59,226,0)_100%)]" />
 
       {/* Ellipse 12: Bottom-Left Lime */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: 672,
-          height: 672,
-          top: 946,
-          left: -287,
-          background: limeGradient,
-          filter: "blur(40px)",
-        }}
-      />
+      <div className="pointer-events-none absolute -bottom-[100px] -left-[150px] size-[400px]  md:-bottom-[10%] md:-left-[10%] md:size-[672px] rounded-full blur-[40px] bg-[radial-gradient(50%_50%_at_50%_50%,#CBFC01_0%,rgba(203,252,1,0.23)_35%,rgba(203,252,1,0.06)_70%,rgba(203,252,1,0)_100%)]" />
 
       {/* ======================================================
           ROW 1: Text LEFT · Image RIGHT
@@ -167,37 +108,40 @@ export default function WhyBytespaceSection() {
           </div>
 
           {/* ── Right: Image + floating badges ── */}
-          <div className="flex-1 relative flex justify-center items-center">
+          <div className="flex-1 relative flex justify-center items-center w-full min-h-[320px] sm:min-h-[400px] md:min-h-auto">
             {/* Neon Green squiggle — top-right corner */}
             <FloatingShape
               src="/images/shapes/mask-secondary.png"
               alt="Neon green spiral accent"
               width={180}
               height={180}
-              className="top-[70px] right-[-10px] sm:right-[80px] z-30"
-              imageClassName="w-24 h-24 sm:w-28 sm:h-28 md:size-[216px] "
+              className="-top-[3%] right-[-10px] sm:top-[20px] sm:right-[30px] md:top-[70px] md:right-[80px] z-30 pointer-events-none animate-bounce"
+              imageClassName="size-[120px] md:size-[216px] "
             />
 
             {/* Man image */}
-            <div className="relative z-20 w-[260px] sm:w-[320px] md:w-[721px] md:h-[552px] mx-auto">
+            <div className="relative z-20 w-[520px] md:w-[721px] max-w-full mx-auto">
               <Image
                 src="/images/man.png"
                 alt="Student with headphones holding laptop"
-                fill
-                className="w-full h-auto object-contain drop-shadow-xl"
+                width={721}
+                height={552}
+                priority
+                className="w-full h-auto object-contain drop-shadow-xl scale-115 sm:scale-100 origin-center"
               />
             </div>
 
             {/* Course card — top-left */}
             <CourseCard
               course={featuredCoursesData[0]}
-              className="absolute top-[2%] -left-3 sm:-left-6 md:left-13 w-[240px] sm:w-[260px] md:w-[323px]  origin-top-left"
+              className="absolute top-[0%] left-0 sm:-left-6 md:left-13 w-[200px] sm:w-[260px] md:w-[323px] origin-top-left"
             />
 
             {/* Reusable Floating badge: Learning progress — right */}
+
             <LearningProgressBadge
               progress={55}
-              className="absolute top-[40%] -right-3 sm:-right-6 md:right-30 z-20"
+              className="absolute top-[20%] right-2 sm:bottom-6 sm:-right-6 md:top-[40%] md:bottom-auto md:right-30 z-20 scale-90 sm:scale-95 md:scale-100 origin-bottom-right"
             />
           </div>
         </div>
@@ -207,27 +151,30 @@ export default function WhyBytespaceSection() {
           "Create & Manage Courses Easily."
           ====================================================== */}
 
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 min-h-[596px] overflow-hidden">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 mt-16 sm:mt-24 md:mt-32">
           {/* ── Left: Image + floating badges ── */}
-          <div className="flex-1 relative flex justify-center items-center ">
+          <div className="flex-1 relative flex justify-center items-center w-full min-h-[320px] sm:min-h-[400px] md:min-h-auto">
             {/* Neon Green squiggle — mid-right */}
             <FloatingShape
               src="/images/shapes/mask-secondary.png"
               alt="Neon green spiral accent"
               width={180}
               height={180}
-              className="top-[25%] right-[0px] sm:right-[110px] z-30"
-              imageClassName="w-24 h-24 sm:w-28 sm:h-28 md:size-[215px] rotate-[50deg]"
+              className="top-[20%] right-[20px] sm:right-[20px] md:top-[25%] md:right-[110px] z-30 pointer-events-none animate-bounce"
+              imageClassName="size-[130px] sm:size-[180px] md:size-[215px] rotate-[50deg]"
             />
 
             {/* Woman image */}
-            <div className="relative z-20 w-[220px] sm:w-[280px] md:w-[635px] md:h-[696px] mx-auto mt-20">
-              <Image
-                src="/images/women.png"
-                alt="Student with headphones holding tablet"
-                fill
-                className="w-full h-auto object-contain drop-shadow-xl z-20"
-              />
+            <div className="md:h-[596px] overflow-hidden mt-6 sm:mt-10 md:mt-20">
+              <div className="relative z-20 w-[420px]  md:w-[596px] mx-auto -mt-5 ">
+                <Image
+                  src="/images/women.png"
+                  alt="Student with headphones holding tablet"
+                  width={635}
+                  height={696}
+                  className="w-full h-auto object-contain drop-shadow-xl z-20"
+                />
+              </div>
             </div>
 
             {/* Reusable Floating badge: Total Revenue — top-left */}
@@ -236,7 +183,7 @@ export default function WhyBytespaceSection() {
               dateRange="July 1-28"
               amount="$120.29"
               progress={65}
-              className="absolute top-[17%] -left-3 sm:-left-6 md:left-0 z-10"
+              className="absolute top-[8%] left-0 sm:-left-6 md:top-[17%] md:left-0 z-10 min-w-[180px]! sm:min-w-[252px]! scale-90 sm:scale-95 md:scale-100 origin-top-left"
             />
 
             {/* Reusable Floating badge: Year to Date — mid-left */}
@@ -245,11 +192,11 @@ export default function WhyBytespaceSection() {
               year="2023"
               amount="$1,200.38"
               growth="+ 12%"
-              className="absolute top-[38%] -left-3 sm:-left-6 md:left-0 z-10"
+              className="absolute top-[28%] -left-0 sm:-left-6 md:top-[40%] md:left-0 z-10 scale-90 sm:scale-95 md:scale-100 origin-top-left"
             />
 
             {/* Reusable Floating badge: Happy Students — bottom-right */}
-            <HappyStudentsBadge className="absolute bottom-[23%] -right-3 sm:-right-6 md:right-20 z-30" />
+            <HappyStudentsBadge className="absolute bottom-[23%] -right-0 sm:-right-6 md:bottom-[10%] md:right-15 z-30 scale-90 sm:scale-95 md:scale-100 origin-bottom-right" />
           </div>
 
           {/* ── Right: Text block ── */}
